@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Unused reference/scratch assets, not part of the app.
+    "images/**",
   ]),
 ]);
 

@@ -7,6 +7,7 @@ import { Search, X } from "lucide-react";
 import { useStore } from "@/lib/store-context";
 import { products } from "@/lib/products";
 import { formatPrice, cn } from "@/lib/utils";
+import { useOverlayEffects } from "@/lib/use-overlay-effects";
 
 const RECENT_KEY = "manza:recent-searches";
 
@@ -25,14 +26,7 @@ export function SearchOverlay() {
     }
   }, [isSearchOpen]);
 
-  useEffect(() => {
-    if (!isSearchOpen) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") closeSearch();
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [isSearchOpen, closeSearch]);
+  useOverlayEffects(isSearchOpen, closeSearch);
 
   const results = useMemo(() => {
     if (!query.trim()) return [];

@@ -39,7 +39,7 @@ function buildOrderMessage(form: FormState, cart: ReturnType<typeof useStore>["c
     .join("\n");
 }
 
-export default function CheckoutPage() {
+export function CheckoutContent() {
   const { cart, subtotal, clearCart } = useStore();
   const [form, setForm] = useState<FormState>(emptyForm);
   const [errors, setErrors] = useState<Partial<Record<keyof FormState, string>>>({});

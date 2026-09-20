@@ -6,7 +6,7 @@ import { Minus, Plus, X } from "lucide-react";
 import { useStore } from "@/lib/store-context";
 import { formatPrice } from "@/lib/utils";
 
-export default function CartPage() {
+export function CartContent() {
   const { cart, removeFromCart, updateQuantity, subtotal } = useStore();
 
   return (

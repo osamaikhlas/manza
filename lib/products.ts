@@ -1,12 +1,11 @@
 /**
  * Centralized product & image data.
  *
- * IMPORTANT — SAMPLE DATA:
- * Every product below is placeholder/sample data (names, prices, descriptions)
- * so the storefront has realistic content to render. Replace with real
- * catalog data before launch. Swap image paths in /public/images — see
- * scripts/gen-placeholders.mjs for how the current placeholders were made,
- * and README.md for exactly where to drop real photography.
+ * IMPORTANT — CONFIRM BEFORE LAUNCH:
+ * Product names, prices and descriptions below were entered as sample
+ * catalog data. Double-check them against the real price list before
+ * going live. Images already point at real photography in /public/images
+ * — see README.md for where to drop new photos.
  *
  * This is the ONLY file that should need editing to change products/images.
  */

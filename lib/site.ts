@@ -4,13 +4,25 @@
  * footer content here — nothing else in the codebase should need editing.
  */
 
+// Resolves to (in order): an explicit override, the Vercel production
+// domain, the current Vercel deployment URL, or localhost for local dev —
+// so metadata/OG URLs are always correct without hardcoding a domain here.
+// Set NEXT_PUBLIC_SITE_URL once a custom domain is live.
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : undefined) ??
+  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : undefined) ??
+  "http://localhost:3000";
+
 export const siteConfig = {
   name: "Manza",
   logo: "/images/logo.jpg",
   tagline: "Contemporary Abayas",
   description:
     "Manza is a contemporary abaya house crafting refined, modern silhouettes for the woman who moves with quiet confidence.",
-  url: "https://manza.example.com", // TODO: replace with real production domain
+  url: siteUrl,
   currency: "PKR",
 
   announcement: "Complimentary delivery when you order 3 or more items",

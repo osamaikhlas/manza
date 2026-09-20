@@ -5,9 +5,11 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { siteConfig } from "@/lib/site";
+import { useOverlayEffects } from "@/lib/use-overlay-effects";
 
 export function MobileMenu({ transparent }: { transparent?: boolean }) {
   const [open, setOpen] = useState(false);
+  useOverlayEffects(open, () => setOpen(false));
 
   return (
     <>

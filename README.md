@@ -1,11 +1,12 @@
-# Manza — Contemporary Abaya E-Commerce (Frontend Prototype)
+# Manza — Contemporary Abaya E-Commerce
 
-A luxury, editorial-first storefront prototype built with Next.js (App Router),
+A luxury, editorial-first storefront built with Next.js (App Router),
 TypeScript, Tailwind CSS v4, and hand-authored shadcn-style primitives.
 
-This is a **frontend prototype**: there is no payment processor or commerce
-backend wired up yet. Cart, wishlist and recent searches persist to
-`localStorage` only, and checkout clearly states that no order is placed.
+Checkout collects delivery details and places the order over WhatsApp —
+payment is Cash on Delivery, there's no payment gateway integration. Cart,
+wishlist and recent searches persist to `localStorage` only (device-local,
+no accounts/backend).
 
 ## Stack
 
@@ -78,35 +79,39 @@ depends on network access. To restore the intended Google Fonts pairing:
   announcement bar copy, trust messaging: `lib/site.ts`
 - **Products & imagery** — every product, category, hero/lookbook/Instagram
   image arrays, testimonials: `lib/products.ts`
-- **Images** — `public/images/*`. Every image the storefront uses today is a
-  generated placeholder SVG (see `scripts/gen-placeholders.mjs`) clearly
-  labelled "SAMPLE IMAGE". Replace them with real photography exported from
-  the brand's Instagram/product shoots, keeping the same file names (or
-  updating the paths in `lib/products.ts`), and swap `.svg` for `.jpg`/`.webp`
-  as needed — `next.config.ts` currently allows local SVGs for the
-  placeholders and can stay as-is once real raster photos are dropped in.
-  Instagram grid images specifically go in `public/images/instagram/`.
+- **Images** — `public/images/*`. Populated with real product/brand
+  photography (jpg/png). `scripts/gen-placeholders.mjs` is the original
+  placeholder-SVG generator used early on — it's no longer wired into the
+  build and can be deleted once you're confident you won't need to
+  regenerate stand-ins. Instagram grid images specifically go in
+  `public/images/instagram/`.
 
 **Nothing else in the codebase should need to change** to rebrand, re-price,
 or reshoot the site.
 
-## Sample data disclosure
+## Business data to confirm before launch
 
-Every product, price, testimonial, and the brand-story/about copy is
-**placeholder/sample data**, clearly marked with `// TODO` comments or
-"sample" copy where it appears. No real business claims (shipping times,
-return windows, etc.) were invented — those are flagged with TODOs in
-`lib/site.ts`, `app/about/page.tsx`, and `components/product-detail.tsx` for
-you to confirm before launch.
+`lib/products.ts` still carries a header comment flagging its product
+names/prices/descriptions as sample data pending catalog confirmation —
+double-check those numbers against the real price list before going live.
+Site-wide contact details, shipping/returns policy, and Instagram handle in
+`lib/site.ts` and `app/about/page.tsx` are already real. The footer's
+`legal.links` for Privacy Policy and Terms in `lib/site.ts` still point to
+`#` — add real policy pages/URLs before launch, or remove the links.
 
-## Where to connect a real backend
+## Where to connect a real backend (optional — not required to ship)
 
-- **Payments / orders**: `app/checkout/page.tsx` explicitly states no
-  payment is processed. Wire up Shopify, Medusa, Stripe Checkout, or a local
-  gateway here; `lib/store-context.tsx` (`CartLine`, `addToCart`, etc.) is
-  already shaped so a real backend can sit behind the same interface.
-- **Accounts**: `app/account/page.tsx` is a placeholder — connect a real
-  customer/auth provider.
+The site works today without any of this: checkout collects delivery
+details and hands the order to WhatsApp for manual confirmation
+(`app/checkout/checkout-content.tsx`), Cash on Delivery only. Swap in a real
+backend later if/when it's needed:
+
+- **Payments / orders**: replace the WhatsApp hand-off in
+  `app/checkout/checkout-content.tsx` with Shopify, Medusa, Stripe Checkout,
+  or a similar gateway; `lib/store-context.tsx` (`CartLine`, `addToCart`,
+  etc.) is already shaped so a real backend can sit behind the same
+  interface.
+- **Accounts**: none exist yet — add a customer/auth provider if needed.
 - **Newsletter**: `components/newsletter.tsx` just flips local UI state on
   submit — wire the `onSubmit` handler to your ESP (Klaviyo, Mailchimp, etc.).
 - **Search**: `components/search-overlay.tsx` searches the local `products`
@@ -116,18 +121,18 @@ you to confirm before launch.
 ## Structure
 
 ```
-app/                  routes (home, shop, product/[slug], about, cart, checkout, account, wishlist)
+app/                  routes (home, shop, product/[slug], about, cart, checkout, wishlist)
 components/           page sections & shared UI (Navbar, ProductCard, CartDrawer, ...)
 components/ui/        shadcn-style primitives (accordion, image-stream-hero)
 lib/                  site config, product data, cart/wishlist context, utils
-public/images/        all imagery (placeholders — see above)
-scripts/               one-off placeholder-image generator
+public/images/        all imagery
+scripts/               legacy one-off placeholder-image generator (unused)
 ```
 
 ## Known limitations / next steps
 
 - Fonts are system stacks, not the intended Fraunces/Inter pairing (see above).
-- All imagery is placeholder SVG art, not real photography.
-- No backend: payments, accounts, and newsletter are UI-only.
-- TikTok/Pinterest footer links are `#` placeholders — add real URLs in
-  `lib/site.ts` when available.
+- No payment gateway or accounts — checkout is WhatsApp + Cash on Delivery,
+  and cart/wishlist/recent-searches are device-local only (see above).
+- Privacy Policy / Terms footer links are `#` placeholders — see
+  "Business data to confirm before launch".

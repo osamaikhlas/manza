@@ -24,6 +24,9 @@
 .DS_Store
 *.pem
 
+# unused reference/scratch assets (not part of the app; served files live in public/images)
+/images/
+
 # debug
 npm-debug.log*
 yarn-debug.log*

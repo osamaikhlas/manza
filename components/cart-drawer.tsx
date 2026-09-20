@@ -6,9 +6,11 @@ import { X, Minus, Plus } from "lucide-react";
 import { useStore } from "@/lib/store-context";
 import { formatPrice } from "@/lib/utils";
 import { cn } from "@/lib/utils";
+import { useOverlayEffects } from "@/lib/use-overlay-effects";
 
 export function CartDrawer() {
   const { cart, isCartOpen, closeCart, removeFromCart, updateQuantity, subtotal } = useStore();
+  useOverlayEffects(isCartOpen, closeCart);
 
   return (
     <>
@@ -107,7 +109,6 @@ export function CartDrawer() {
               >
                 View Bag
               </Link>
-              {/* Checkout has no payment backend wired up yet — see README. */}
               <Link
                 href="/checkout"
                 onClick={closeCart}

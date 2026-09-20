@@ -4,7 +4,7 @@ import { useStore } from "@/lib/store-context";
 import { products } from "@/lib/products";
 import { ProductGrid } from "@/components/product-grid";
 
-export default function WishlistPage() {
+export function WishlistContent() {
   const { wishlist } = useStore();
   const items = products.filter((p) => wishlist.includes(p.id));
 

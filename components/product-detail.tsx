@@ -100,14 +100,16 @@ export function ProductDetail({ product }: { product: Product }) {
             <AccordionItem value="shipping">
               <AccordionTrigger>Shipping</AccordionTrigger>
               <AccordionContent>
-                Nationwide delivery across Pakistan, carefully packaged. Exact timelines and
-                rates are configured at checkout. {/* TODO: confirm real shipping copy */}
+                Nationwide delivery across Pakistan, carefully packaged. Free on orders of 3 or
+                more items — otherwise standard delivery charges apply and are calculated at
+                checkout based on your location.
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="returns">
               <AccordionTrigger>Returns</AccordionTrigger>
               <AccordionContent>
-                Easy returns within a configurable window of delivery. {/* TODO: confirm real returns policy */}
+                Returns are accepted within 7 days of delivery, provided items are unworn,
+                unused, and returned in their original condition and packaging.
               </AccordionContent>
             </AccordionItem>
           </Accordion>
