@@ -87,12 +87,9 @@ export function SizeSelector({
               </thead>
               <tbody>
                 {[
-                  ["XS", "36", "54"],
                   ["S", "38", "55"],
                   ["M", "40", "56"],
                   ["L", "42", "57"],
-                  ["XL", "44", "58"],
-                  ["XXL", "46", "59"],
                 ].map((row) => (
                   <tr key={row[0]} className="border-t border-espresso/10">
                     <td className="py-1.5">{row[0]}</td>
@@ -102,7 +99,6 @@ export function SizeSelector({
                 ))}
               </tbody>
             </table>
-            <p className="mt-3">Sample measurements — replace with your brand&rsquo;s real size chart.</p>
           </div>
         </div>
       )}

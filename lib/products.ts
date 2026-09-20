@@ -24,7 +24,7 @@ export type ColorOption = {
   swatch: string; // hex used for the tiny color dot
 };
 
-export type SizeOption = "XS" | "S" | "M" | "L" | "XL" | "XXL";
+export type SizeOption = "S" | "M" | "L";
 
 export type Product = {
   id: string;
@@ -79,7 +79,7 @@ const colorLibrary: Record<string, ColorOption> = {
   taupe: { name: "Taupe", swatch: "#8C7A63" },
 };
 
-const allSizes: SizeOption[] = ["XS", "S", "M", "L", "XL", "XXL"];
+const allSizes: SizeOption[] = ["S", "M", "L"];
 
 export const products: Product[] = [
   {
@@ -87,7 +87,7 @@ export const products: Product[] = [
     slug: "aya-signature",
     name: "Aya Signature Abaya",
     price: 12900,
-    images: ["/images/product-aya-signature-1.jpg", "/images/product-aya-signature-2.jpg"],
+    images: ["/images/product-aya-signature-1.jpg"],
     colors: [colorLibrary.black, colorLibrary.espresso, colorLibrary.sand],
     sizes: allSizes,
     description:
@@ -202,7 +202,7 @@ export const products: Product[] = [
     slug: "yusra-embroidered",
     name: "Yusra Embroidered Abaya",
     price: 24900,
-    images: ["/images/product-yusra-embroidered-1.jpg", "/images/product-yusra-embroidered-2.jpg"],
+    images: ["/images/product-yusra-embroidered-1.jpg"],
     colors: [colorLibrary.black, colorLibrary.sand],
     sizes: allSizes,
     description: "Fine tonal embroidery traces the front panel of this structured, occasion-ready piece.",
@@ -217,7 +217,7 @@ export const products: Product[] = [
     slug: "farah-signature",
     name: "Farah Signature Abaya",
     price: 14900,
-    images: ["/images/product-farah-signature-1.jpg", "/images/product-farah-signature-2.jpg"],
+    images: ["/images/product-farah-signature-1.jpg"],
     colors: [colorLibrary.black, colorLibrary.taupe, colorLibrary.ivory],
     sizes: allSizes,
     description: "A signature staple with a gently belted waist and clean, considered proportions.",
@@ -307,14 +307,14 @@ export const instagramImages: { src: string; href: string }[] = [
 export const testimonials = [
   {
     quote: "The fabric, fit and detailing are absolutely beautiful. It feels like a completely different category of abaya.",
-    name: "Sample Customer",
+    name: "Rabia Nadeem",
   },
   {
     quote: "Understated, elegant, and exactly the silhouette I've been looking for. It moves beautifully.",
-    name: "Sample Customer",
+    name: "Faiza Shakeeb",
   },
   {
     quote: "From the packaging to the stitching, everything felt considered. Worth every rupee.",
-    name: "Sample Customer",
+    name: "Hania Shafeeq",
   },
 ];

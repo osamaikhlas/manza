@@ -60,12 +60,13 @@ export function Footer() {
             <a href={siteConfig.social.instagram} target="_blank" rel="noreferrer noopener" className="link-underline">
               Instagram
             </a>
-            {/* TODO: replace with real TikTok/Pinterest URLs when available */}
-            <a href={siteConfig.social.tiktok} className="link-underline">
-              TikTok
-            </a>
-            <a href={siteConfig.social.pinterest} className="link-underline">
-              Pinterest
+            <a
+              href={`https://wa.me/${siteConfig.contact.whatsapp.replace(/\D/g, "")}`}
+              target="_blank"
+              rel="noreferrer noopener"
+              className="link-underline"
+            >
+              WhatsApp
             </a>
           </div>
         </div>

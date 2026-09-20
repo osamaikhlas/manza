@@ -215,7 +215,22 @@ export default function CheckoutPage() {
             <span className="uppercase tracking-wide text-taupe">Subtotal</span>
             <span className="font-medium">{formatPrice(subtotal)}</span>
           </div>
-          <p className="mt-2 text-xs text-taupe">Shipping calculated on confirmation.</p>
+
+          <div className="mt-4 space-y-2 border-t border-espresso/10 pt-4 text-xs leading-relaxed text-taupe">
+            <p>
+              <span className="font-semibold text-espresso">Shipping — </span>
+              Free on orders of 3+ items. Otherwise, standard delivery charges apply and will be
+              confirmed with you on WhatsApp.
+            </p>
+            <p>
+              <span className="font-semibold text-espresso">Returns — </span>
+              Accepted within 7 days of delivery, provided items are unworn and in original
+              packaging.
+            </p>
+            <Link href="/about#shipping" className="link-underline inline-block text-espresso">
+              Read full policy
+            </Link>
+          </div>
         </div>
       </div>
     </div>

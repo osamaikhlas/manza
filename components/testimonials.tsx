@@ -25,7 +25,6 @@ export function Testimonials() {
           </figure>
         ))}
       </div>
-      {/* Sample testimonials — replace with real customer quotes when available. */}
     </section>
   );
 }

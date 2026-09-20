@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Heart, Search, ShoppingBag, User } from "lucide-react";
+import { Heart, Search, ShoppingBag } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { siteConfig } from "@/lib/site";
 import { useStore } from "@/lib/store-context";
@@ -118,13 +118,6 @@ export function Navbar() {
           >
             <Search className="h-[18px] w-[18px]" strokeWidth={1.4} />
           </button>
-          <Link
-            href="/account"
-            aria-label="Account"
-            className="hidden transition-opacity hover:opacity-60 lg:inline-flex"
-          >
-            <User className="h-[18px] w-[18px]" strokeWidth={1.4} />
-          </Link>
           <Link
             href="/wishlist"
             aria-label={`Wishlist${wishlist.length ? `, ${wishlist.length} items` : ""}`}
