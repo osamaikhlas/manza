@@ -1,0 +1,267 @@
+@import "tailwindcss";
+
+@theme inline {
+  /* Brand palette — built from three supplied brand colors: #EEC2F4 (orchid
+     pink), #DCDADD (lavender-grey) and #544E55 (plum-charcoal). Lighter/
+     darker tokens are derived from these three so the whole site reads as
+     one consistent family. */
+  --color-ivory: #f3f2f3;
+  --color-cream: #e5e3e6;
+  --color-sand: #dcdadd;
+  --color-taupe: #544e55;
+  --color-taupe-light: #98949a;
+  --color-espresso: #2f2032;
+  --color-espresso-light: #4a384d;
+  --color-charcoal: #1b111c;
+  --color-bronze: #77617a;
+  --color-bronze-light: #eec2f4;
+
+  /* Self-hosted system stacks — no external font requests, so the build
+     never depends on network access to Google Fonts. To use the intended
+     editorial pairing (Fraunces for headings, Inter for UI/body), restore
+     `next/font/google` in app/layout.tsx once your deployment environment
+     can reach fonts.googleapis.com, then point these two variables at the
+     generated CSS variables. */
+  --font-serif: Georgia, "Iowan Old Style", "Palatino Linotype", "Book Antiqua", serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Helvetica, Arial,
+    sans-serif;
+
+  --animate-fade-up: fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-fade-in: fade-in 0.8s ease both;
+}
+
+@media (prefers-color-scheme: dark) {
+  /* This storefront is intentionally single-theme (warm ivory light UI) to
+     preserve the editorial art direction; dark-mode overrides are omitted
+     on purpose rather than left half-implemented. */
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Defensive baseline: no element should ever cause sideways scroll on
+     mobile. Individual overflow bugs should still be fixed at the source,
+     but this stops any stray one from breaking the whole page. */
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  background: var(--color-ivory);
+  color: var(--color-espresso);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-bronze);
+  color: var(--color-ivory);
+}
+
+/* Visible, elegant focus ring — never remove focus states for style. */
+:focus-visible {
+  outline: 1.5px solid var(--color-bronze);
+  outline-offset: 3px;
+}
+
+/* ---------- ImageStreamHero corridor keyframes ---------- */
+
+@keyframes isr-move-z {
+  0% {
+    transform: translateZ(-900px) scale(0.4);
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  78% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateZ(650px) scale(1.7);
+    opacity: 0;
+  }
+}
+
+@keyframes isr-move-z-drift {
+  0% {
+    transform: translateZ(-900px) translateX(0) scale(0.4);
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  50% {
+    transform: translateZ(-125px) translateX(var(--isr-drift-x)) scale(0.9);
+  }
+  78% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateZ(650px) translateX(0) scale(1.7);
+    opacity: 0;
+  }
+}
+
+@keyframes isr-move-x {
+  0% {
+    transform: translateX(-8%);
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  78% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(8%);
+    opacity: 0;
+  }
+}
+
+@keyframes isr-move-x-drift {
+  0% {
+    transform: translateX(-8%) translateY(0);
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  50% {
+    transform: translateX(0) translateY(var(--isr-drift-x));
+  }
+  78% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(8%) translateY(0);
+    opacity: 0;
+  }
+}
+
+@keyframes isr-move-y {
+  0% {
+    transform: translateY(-8%);
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  78% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(8%);
+    opacity: 0;
+  }
+}
+
+@keyframes isr-move-y-drift {
+  0% {
+    transform: translateY(-8%) translateX(0);
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(0) translateX(var(--isr-drift-x));
+  }
+  78% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(8%) translateX(0);
+    opacity: 0;
+  }
+}
+
+.isr-tile {
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  animation-iteration-count: infinite;
+  will-change: transform, opacity;
+}
+.isr-axis-z {
+  animation-name: isr-move-z;
+}
+.isr-axis-z.isr-drift {
+  animation-name: isr-move-z-drift;
+}
+.isr-axis-x {
+  animation-name: isr-move-x;
+}
+.isr-axis-x.isr-drift {
+  animation-name: isr-move-x-drift;
+}
+.isr-axis-y {
+  animation-name: isr-move-y;
+}
+.isr-axis-y.isr-drift {
+  animation-name: isr-move-y-drift;
+}
+
+/* ---------- Shared entrance animation for editorial sections ---------- */
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.reveal {
+  animation: var(--animate-fade-up);
+}
+
+/* Elegant scrollbar-free horizontal scroll for lookbook on mobile */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Underline hover for nav/link elements */
+.link-underline {
+  position: relative;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 1px;
+  transition: background-size 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.link-underline:hover,
+.link-underline:focus-visible {
+  background-size: 100% 1px;
+}
